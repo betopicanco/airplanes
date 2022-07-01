@@ -3,8 +3,7 @@ import IconsProps from "./IconsProps";
 export default function AirplaneIcon({ style }: IconsProps) {
   return (
     <svg 
-      className={style.className} 
-      width={style.size} height={style.size} 
+      className={style} 
       viewBox="0 0 24 24"
       stroke="currentColor" 
       fill="none" strokeLinecap="round" strokeLinejoin="round">  

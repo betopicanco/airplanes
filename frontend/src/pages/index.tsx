@@ -10,8 +10,10 @@ const Home: NextPage = () => {
       <LayoutDefault>
         <main>
           <div className={` hidden md:block`}>
-            <Image src={'/img/airplane-in-sky.jpg'} 
-            layout={'fill'}/>
+            <Image 
+              src={'/img/airplane-in-sky.jpg'} 
+              layout={'fill'}
+              alt={'Avião voando no céu'}/>
           </div>
 
           <div className={`fixed z-10 right-8 bottom-8`}>
