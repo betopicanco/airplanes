@@ -1,6 +1,7 @@
-import Table from "../table";
-import Td from "../table/Td"
-import Thead from "../table/Thead";
+import Table from "../../table";
+import Td from "../../table/Td"
+import Thead from "../../table/Thead";
+import PassengersActions from "./actions";
 
 interface PassengersProps {
   passengers: {
@@ -23,7 +24,7 @@ export default function Passengers({ model, passengers }: PassengersProps) {
             Passageiros { model }
           </strong>
         </div>
-        <Table>
+        <Table fixed={false}>
           <Thead headers={[
             'Nome', 'Email', 'Ações'
           ]}/>
@@ -32,11 +33,15 @@ export default function Passengers({ model, passengers }: PassengersProps) {
               return (
                 <tr key={index}>
                   <Td>
-                    {passenger.name}
+                    { passenger.name }
                   </Td>
 
                   <Td>
-                    {passenger.email}
+                    { passenger.email }
+                  </Td>
+
+                  <Td>
+                    <PassengersActions passenger={passenger}/>
                   </Td>
                 </tr>
               );

@@ -2,15 +2,26 @@ import { useState } from "react";
 import AirplaneInterface from "../../AirplaneInterface";
 import ChevronDown from "../icons/ChevronDown";
 import ChevronUp from "../icons/ChevroUp";
+import PencilIcon from "../icons/PencilIcon";
+import TrashIcon from "../icons/TrashIcon";
 import Td from "../table/Td";
-import CrawMembers from "./CrawMembers";
-import Passengers from "./Passengers";
+import Actions from "./actions";
+import CrawMembers from "./crawMembers";
+import Passengers from "./passengers";
 
 export default function AirplaneInfo(
     { airplane }: { airplane: AirplaneInterface }
 ) {
   const [ showCrawMembers, setShowCrawMembers ] = useState(false);
   const [ showPassengers, setShowPassengers ] = useState(false);
+  const {
+    id,
+    model, 
+    baggage_limit: baggageLimit, 
+    seat_limit: seatLimit, 
+    passengers, 
+    craw_members: crawMembers 
+  } = airplane;
 
   const handleCrawMemberClick = () => {
     if(showPassengers) setShowPassengers(false);
@@ -24,7 +35,7 @@ export default function AirplaneInfo(
 
   const crawMembersTd = (
     <div className={` flex justify-center `} onClick={handleCrawMemberClick}>
-      { airplane.craw_members.length }
+      { crawMembers.length }
         
       <span className={` p-1 `}>
         {showCrawMembers ? (
@@ -37,7 +48,7 @@ export default function AirplaneInfo(
   );
   const passengersTd = (
     <div className={` flex justify-center `} onClick={handlePassengersClick}>
-      { airplane.passengers.length }
+      { passengers.length }
 
       <span>
         {showPassengers ? (
@@ -51,17 +62,17 @@ export default function AirplaneInfo(
 
   return (
     <>
-      <tr key={airplane.id}>
+      <tr key={id}>
         <Td>
-          {airplane.model}
+          {model}
         </Td>
 
         <Td>
-          {airplane.baggage_limit}
+          {baggageLimit}
         </Td>
 
         <Td>
-          {airplane.seat_limit}
+          {seatLimit}
         </Td>
 
         <Td>
@@ -71,14 +82,18 @@ export default function AirplaneInfo(
         <Td>
           {passengersTd}
         </Td>
+
+        <Td>
+          {<Actions airplane={airplane}/>}
+        </Td>
       </tr>
 
       {showCrawMembers && (
-        <CrawMembers model={airplane.model} crawMembers={airplane.craw_members}/>
+        <CrawMembers model={model} crawMembers={crawMembers}/>
       )}
 
       {showPassengers && (
-        <Passengers model={airplane.model} passengers={airplane.passengers}/>
+        <Passengers model={model} passengers={passengers}/>
       )}
     </>
   );

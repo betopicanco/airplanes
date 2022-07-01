@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import AirplaneInfo from "../components/airplane/AirplaneInfo";
+import AirplaneInfo from "../components/airplane";
 import H1 from "../components/headings/H1";
 import LayoutDefault from "../components/layout";
 import BgDefault from "../components/layout/BgDefault";
@@ -31,6 +31,29 @@ const Airplanes: NextPage = () => {
         {
           name: 'Roberto Picanço',
           email: 'betopicanco@gmail.com',
+        }
+      ]
+    }, {
+      id: '2',
+      model: 'Airbus 387',
+      baggage_limit: 356,
+      seat_limit: 45,
+      craw_members: [
+        {
+          position: 'Piloto',
+          name: 'Bob Esponja',
+          email: 'bobesponja@email.com',
+        },
+        {
+          position: 'Co-Piloto',
+          name: 'Patrick',
+          email: 'patrick@email.com',
+        }
+      ],
+      passengers: [
+        {
+          name: 'Lula Molusco',
+          email: 'lulamolusco@gmail.com',
         }
       ]
     }

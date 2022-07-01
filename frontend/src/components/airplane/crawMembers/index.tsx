@@ -1,6 +1,10 @@
-import Table from "../table";
-import Td from "../table/Td";
-import Thead from "../table/Thead";
+import PencilIcon from "../../icons/PencilIcon";
+import TrashIcon from "../../icons/TrashIcon";
+import Table from "../../table";
+import Td from "../../table/Td";
+import Thead from "../../table/Thead";
+import Actions from "../actions";
+import CrawMembersActions from "./actions";
 
 interface CrawMembersProps {
   crawMembers: {
@@ -12,6 +16,18 @@ interface CrawMembersProps {
 }
 
 export default function CrawMembers({ model, crawMembers }: CrawMembersProps) {
+  const actions = (
+    <div className={` flex justify-center `}>
+      <span className={` py-1 px-2 `}>
+        <PencilIcon style={` h-6 w-6 stroke-purple-600 `}/>
+      </span>
+
+      <span className={` py-1 px-2 `}>
+        <TrashIcon style={` h-6 w-6 stroke-red-400 `}/>
+      </span>
+    </div>
+  );
+
   return (
     <tr className={` border-y border-blue-800 `}>
       <td></td>
@@ -24,24 +40,28 @@ export default function CrawMembers({ model, crawMembers }: CrawMembersProps) {
             Tripulação { model }
           </strong>
         </div>
-        <Table>
+        <Table fixed={false}>
           <Thead headers={[
             'Cargo', 'Nome', 'Email', 'Ações'
           ]}/>
           <tbody>
-            {crawMembers.map((craw_member, index) => {
+            {crawMembers.map((crawMember, index) => {
               return (
                 <tr key={index}>
                   <Td>
-                    {craw_member.position}
+                    { crawMember.position }
                   </Td>
 
                   <Td>
-                    {craw_member.name}
+                    { crawMember.name }
                   </Td>
 
                   <Td>
-                    {craw_member.email}
+                    { crawMember.email }
+                  </Td>
+
+                  <Td>
+                    <CrawMembersActions crawMember={crawMember}/>
                   </Td>
                 </tr>
               );

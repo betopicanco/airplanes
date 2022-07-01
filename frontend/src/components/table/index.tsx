@@ -1,10 +1,15 @@
-import TableProps from "./TableProps";
 
-export default function Table({ children }: TableProps) {
+interface TableProps {
+  children: JSX.Element[],
+  fixed?: boolean | undefined
+}
+
+export default function Table({ children, fixed = true }: TableProps) {
+  let style = 'border-2 border-blue-800 w-full  ' ;
+  style += fixed ? 'table-fixed' : 'table-auto';
+  
   return (
-    <table className={` 
-      border-2 border-blue-800 table-fixed w-full 
-    `}>
+    <table className={style}>
       { children }
     </table>
   );
