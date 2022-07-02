@@ -1,63 +1,25 @@
 import { NextPage } from "next";
+import { useEffect, useState } from "react";
 import AirplaneInfo from "../components/airplane";
+import CreateEditAirplane from "../components/airplane/actions/CreateEditAirplane";
+import PrimaryButton from "../components/buttons/PrimaryButton";
 import H1 from "../components/headings/H1";
 import LayoutDefault from "../components/layout";
 import BgDefault from "../components/layout/BgDefault";
 import Table from "../components/table";
 import TBody from "../components/table/TBody";
 import Thead from "../components/table/Thead";
+import api from "../services/api";
 
 const Airplanes: NextPage = () => {
+  const [ showCreate, setShowCreate ] = useState(false);
+  const [ airplanes, setAirplanes ] = useState([]);
 
-  const airplanes = [
-    {
-      id: '1',
-      model: 'Boieng 777',
-      baggage_limit: 577,
-      seat_limit: 80,
-      craw_members: [
-        {
-          position: 'Piloto',
-          name: 'Miguel Farias',
-          email: 'miguelfarias@email.com',
-        },
-        {
-          position: 'Co-Piloto',
-          name: 'Maria Clara',
-          email: 'mariaclara@email.com',
-        }
-      ],
-      passengers: [
-        {
-          name: 'Roberto Picanço',
-          email: 'betopicanco@gmail.com',
-        }
-      ]
-    }, {
-      id: '2',
-      model: 'Airbus 387',
-      baggage_limit: 356,
-      seat_limit: 45,
-      craw_members: [
-        {
-          position: 'Piloto',
-          name: 'Bob Esponja',
-          email: 'bobesponja@email.com',
-        },
-        {
-          position: 'Co-Piloto',
-          name: 'Patrick',
-          email: 'patrick@email.com',
-        }
-      ],
-      passengers: [
-        {
-          name: 'Lula Molusco',
-          email: 'lulamolusco@gmail.com',
-        }
-      ]
-    }
-  ];
+  useEffect(() => {
+    api.get('/airplanes/').then(res => {
+      setAirplanes(res.data);
+    });
+  }, []);
 
   return (
     <BgDefault>
@@ -65,19 +27,27 @@ const Airplanes: NextPage = () => {
         <div className={` 
           mx-8 sm:mx-24 mt-20 pt-12
         `}>
-          <div className={` mb-8 `}>
+          <div className={` mb-8 flex justify-between `}>
             <H1>
               Aviões
             </H1>
+
+            {showCreate && (
+              <CreateEditAirplane close={() => setShowCreate(false)}/>
+            )}
+
+            <PrimaryButton onClick={() => setShowCreate(true)}>
+              Adicionar
+            </PrimaryButton>
           </div>
 
           <Table>
             <Thead headers={[
-              'Modelo', 
+              'Placa',
+              'Modelo',
+              'Companhia Aérea',
               'Limite de Bagagem', 
-              'Limite de Assentos', 
-              'Tripulação', 
-              'Passageiros',
+              'Limite de Assentos',
               'Ações'
             ]}/>
             <TBody>

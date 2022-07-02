@@ -3,7 +3,7 @@ import AirplaneInterface from "../../../AirplaneInterface";
 import PencilIcon from "../../icons/PencilIcon";
 import TrashIcon from "../../icons/TrashIcon";
 import DeleteAirplane from "./DeleteAirplane";
-import EditAirplane from "./EditAirplane";
+import CreateEditAirplane from "./CreateEditAirplane";
 
 export default function Actions({ airplane }: {airplane: AirplaneInterface}) {
   const { id, model } = airplane;
@@ -17,7 +17,10 @@ export default function Actions({ airplane }: {airplane: AirplaneInterface}) {
       </span>
 
       {showEdit && (
-        <EditAirplane airplane={airplane} close={() => setShowEdit(false)}/>
+        <CreateEditAirplane 
+          airplane={airplane} 
+          close={() => setShowEdit(false)}
+        />
       )}
 
       <span className={` py-1 px-2 mx-2 `} onClick={() => setShowDelete(true)}>

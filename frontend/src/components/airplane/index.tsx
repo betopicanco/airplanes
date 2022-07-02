@@ -2,8 +2,6 @@ import { useState } from "react";
 import AirplaneInterface from "../../AirplaneInterface";
 import ChevronDown from "../icons/ChevronDown";
 import ChevronUp from "../icons/ChevroUp";
-import PencilIcon from "../icons/PencilIcon";
-import TrashIcon from "../icons/TrashIcon";
 import Td from "../table/Td";
 import Actions from "./actions";
 import CrawMembers from "./crawMembers";
@@ -16,11 +14,11 @@ export default function AirplaneInfo(
   const [ showPassengers, setShowPassengers ] = useState(false);
   const {
     id,
-    model, 
+    place,
+    model,
+    airline, 
     baggage_limit: baggageLimit, 
     seat_limit: seatLimit, 
-    passengers, 
-    craw_members: crawMembers 
   } = airplane;
 
   const handleCrawMemberClick = () => {
@@ -33,38 +31,46 @@ export default function AirplaneInfo(
     setShowPassengers(!showPassengers);
   }
 
-  const crawMembersTd = (
-    <div className={` flex justify-center `} onClick={handleCrawMemberClick}>
-      { crawMembers.length }
+  // const crawMembersTd = (
+  //   <div className={` flex justify-center `} onClick={handleCrawMemberClick}>
+  //     { crawMembers.length }
         
-      <span className={` p-1 `}>
-        {showCrawMembers ? (
-          <ChevronUp style={` h-6 w-6 stroke-2 `}/>
-        ) : (
-          <ChevronDown style={` h-6 w-6 stroke-2 `}/>
-        )}
-      </span>
-    </div>
-  );
-  const passengersTd = (
-    <div className={` flex justify-center `} onClick={handlePassengersClick}>
-      { passengers.length }
+  //     <span className={` p-1 `}>
+  //       {showCrawMembers ? (
+  //         <ChevronUp style={` h-6 w-6 stroke-2 `}/>
+  //       ) : (
+  //         <ChevronDown style={` h-6 w-6 stroke-2 `}/>
+  //       )}
+  //     </span>
+  //   </div>
+  // );
+  // const passengersTd = (
+  //   <div className={` flex justify-center `} onClick={handlePassengersClick}>
+  //     { passengers.length }
 
-      <span>
-        {showPassengers ? (
-          <ChevronUp style={` h-6 w-6 stroke-2 `}/>
-        ) : (
-          <ChevronDown style={` h-6 w-6 stroke-2 `}/>
-        )}
-      </span>
-    </div>
-  );
+  //     <span>
+  //       {showPassengers ? (
+  //         <ChevronUp style={` h-6 w-6 stroke-2 `}/>
+  //       ) : (
+  //         <ChevronDown style={` h-6 w-6 stroke-2 `}/>
+  //       )}
+  //     </span>
+  //   </div>
+  // );
 
   return (
     <>
       <tr key={id}>
         <Td>
+          {place}
+        </Td>
+
+        <Td>
           {model}
+        </Td>
+
+        <Td>
+          {airline}
         </Td>
 
         <Td>
@@ -76,25 +82,17 @@ export default function AirplaneInfo(
         </Td>
 
         <Td>
-          {crawMembersTd}
-        </Td>
-
-        <Td>
-          {passengersTd}
-        </Td>
-
-        <Td>
           {<Actions airplane={airplane}/>}
         </Td>
       </tr>
 
-      {showCrawMembers && (
+      {/* {showCrawMembers && (
         <CrawMembers model={model} crawMembers={crawMembers}/>
       )}
 
       {showPassengers && (
         <Passengers model={model} passengers={passengers}/>
-      )}
+      )} */}
     </>
   );
 }
