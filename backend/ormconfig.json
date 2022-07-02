@@ -1,0 +1,15 @@
+{
+  "type": "postgres",
+  "host": "kesavan.db.elephantsql.com",
+  "port": "5432",
+  "username": "tmvbcrvl",
+  "password": "tXbrAlPDvzOv1jpJBzGSTojIquK5jSVZ",
+  "database": "tmvbcrvl",
+  "entities": ["./src/modules/**/typeorm/entities/*.ts"],
+  "migrations": [
+    "./src/shared/typeorm/migrations/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/shared/typeorm/migrations"
+  }
+}
