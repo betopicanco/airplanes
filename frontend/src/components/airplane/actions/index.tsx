@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AirplaneInterface from "../../../AirplaneInterface";
+import AirplaneInterface from "../../../interfaces/IAirplane";
 import PencilIcon from "../../icons/PencilIcon";
 import TrashIcon from "../../icons/TrashIcon";
 import DeleteAirplane from "./DeleteAirplane";

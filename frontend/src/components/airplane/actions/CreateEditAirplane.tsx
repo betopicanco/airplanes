@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AirplaneInterface from "../../../AirplaneInterface";
+import AirplaneInterface from "../../../interfaces/IAirplane";
 import api from "../../../services/api";
 import PrimaryButton from "../../buttons/PrimaryButton";
 import Input from "../../inputs";
@@ -8,11 +8,11 @@ import Modal from "../../modal";
 export default function CreateEditAirplane(
   { airplane, close }: { airplane?: AirplaneInterface, close: () => void }
 ) {
-  const [ place, setPlace ] = useState(airplane ? airplane.place : '');
-  const [ model, setModel ] = useState(airplane ? airplane.model : '');
-  const [ airline, setAirline ] = useState(airplane ? airplane.airline : '');
-  const [ baggage_limit, setBaggageLimit ] = useState(airplane ? airplane.baggage_limit : '');
-  const [ seat_limit, setSeatLimit ] = useState(airplane ? airplane.seat_limit : '');
+  const [ place, setPlace ] = useState(airplane?.place);
+  const [ model, setModel ] = useState(airplane?.model);
+  const [ airline, setAirline ] = useState(airplane?.airline);
+  const [ baggage_limit, setBaggageLimit ] = useState(airplane?.baggage_limit);
+  const [ seat_limit, setSeatLimit ] = useState(airplane?.seat_limit);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -45,7 +45,6 @@ export default function CreateEditAirplane(
         })
         .catch(err => console.error(err))
     }
-
   }
 
   return (

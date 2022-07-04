@@ -6,7 +6,9 @@ export default class ListAirplaneService {
   public async execute(): Promise<Airplane[]> {
     const airplaneRepository = getCustomRepository(AirplaneRepository);
 
-    const airplanes = airplaneRepository.find();
+    const airplanes = airplaneRepository.find({
+      relations: ['travels']
+    });
 
     return airplanes;
   }

@@ -46,7 +46,7 @@ const Airplanes: NextPage = () => {
               'Placa',
               'Modelo',
               'Companhia Aérea',
-              'Limite de Bagagem', 
+              'Limite de Bagagem (Lt.)', 
               'Limite de Assentos',
               'Ações'
             ]}/>

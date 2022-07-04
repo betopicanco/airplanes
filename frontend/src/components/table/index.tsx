@@ -5,7 +5,7 @@ interface TableProps {
 }
 
 export default function Table({ children, fixed = true }: TableProps) {
-  let style = 'border-2 border-blue-800 w-full  ' ;
+  let style = 'border border-blue-800 w-full  ' ;
   style += fixed ? 'table-fixed' : 'table-auto';
   
   return (

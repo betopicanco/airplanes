@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import Travel from '../../../travels/typeorm/entities/Travel';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('airplanes')
 export default class Airplane {
@@ -14,11 +15,16 @@ export default class Airplane {
   @Column()
   airline: string;
 
-  @Column()
+  @Column('int')
   baggage_limit: number;
 
-  @Column()
+  @Column('int')
   seat_limit: number;
+
+  @OneToMany(() => Travel, travel => travel.airplane, {
+    cascade: true
+  })
+  travels: Travel[];
 
   @CreateDateColumn()
   created_at: Date;

@@ -29,7 +29,7 @@ export class CreateAirplanes1656711610589 implements MigrationInterface {
             },
             {
               name: 'baggage_limit',
-              type: 'float',
+              type: 'int',
             },
             {
               name: 'seat_limit',
@@ -51,7 +51,6 @@ export class CreateAirplanes1656711610589 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.dropTable('airplanes')
+      await queryRunner.dropTable('airplanes');
     }
-
 }

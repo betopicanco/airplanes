@@ -15,7 +15,11 @@ export default function Header() {
 
       <div className={` text-center m-4 `}>
           <span className={` hidden md:inline-block `}>
-            <HeaderLink text={'Passageiros e Tripulação'} path={'/users'}/>
+            <HeaderLink text={'Viagens'} path={'/travels'}/>
+          </span>
+
+          <span className={` hidden md:inline-block `}>
+            <HeaderLink text={'Passageiros e Tripulação'} path={'/travellers'}/>
           </span>
 
           <strong>

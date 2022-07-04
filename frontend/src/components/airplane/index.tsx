@@ -1,19 +1,11 @@
-import { useState } from "react";
-import AirplaneInterface from "../../AirplaneInterface";
-import ChevronDown from "../icons/ChevronDown";
-import ChevronUp from "../icons/ChevroUp";
+import IAirplane from "../../interfaces/IAirplane";
 import Td from "../table/Td";
 import Actions from "./actions";
-import CrawMembers from "./crawMembers";
-import Passengers from "./passengers";
 
 export default function AirplaneInfo(
-    { airplane }: { airplane: AirplaneInterface }
+    { airplane }: { airplane: IAirplane }
 ) {
-  const [ showCrawMembers, setShowCrawMembers ] = useState(false);
-  const [ showPassengers, setShowPassengers ] = useState(false);
   const {
-    id,
     place,
     model,
     airline, 
@@ -21,78 +13,31 @@ export default function AirplaneInfo(
     seat_limit: seatLimit, 
   } = airplane;
 
-  const handleCrawMemberClick = () => {
-    if(showPassengers) setShowPassengers(false);
-    setShowCrawMembers(!showCrawMembers);
-  }
-
-  const handlePassengersClick = () => {
-    if(showCrawMembers) setShowCrawMembers(false);
-    setShowPassengers(!showPassengers);
-  }
-
-  // const crawMembersTd = (
-  //   <div className={` flex justify-center `} onClick={handleCrawMemberClick}>
-  //     { crawMembers.length }
-        
-  //     <span className={` p-1 `}>
-  //       {showCrawMembers ? (
-  //         <ChevronUp style={` h-6 w-6 stroke-2 `}/>
-  //       ) : (
-  //         <ChevronDown style={` h-6 w-6 stroke-2 `}/>
-  //       )}
-  //     </span>
-  //   </div>
-  // );
-  // const passengersTd = (
-  //   <div className={` flex justify-center `} onClick={handlePassengersClick}>
-  //     { passengers.length }
-
-  //     <span>
-  //       {showPassengers ? (
-  //         <ChevronUp style={` h-6 w-6 stroke-2 `}/>
-  //       ) : (
-  //         <ChevronDown style={` h-6 w-6 stroke-2 `}/>
-  //       )}
-  //     </span>
-  //   </div>
-  // );
-
   return (
-    <>
-      <tr key={id}>
-        <Td>
-          {place}
-        </Td>
+    <tr className={` hover:bg-indigo-100 `}>
+      <Td>
+        {place}
+      </Td>
 
-        <Td>
-          {model}
-        </Td>
+      <Td>
+        {model}
+      </Td>
 
-        <Td>
-          {airline}
-        </Td>
+      <Td>
+        {airline}
+      </Td>
 
-        <Td>
-          {baggageLimit}
-        </Td>
+      <Td>
+        {baggageLimit}
+      </Td>
 
-        <Td>
-          {seatLimit}
-        </Td>
+      <Td>
+        {seatLimit}
+      </Td>
 
-        <Td>
-          {<Actions airplane={airplane}/>}
-        </Td>
-      </tr>
-
-      {/* {showCrawMembers && (
-        <CrawMembers model={model} crawMembers={crawMembers}/>
-      )}
-
-      {showPassengers && (
-        <Passengers model={model} passengers={passengers}/>
-      )} */}
-    </>
+      <Td>
+        {<Actions airplane={airplane}/>}
+      </Td>
+    </tr>
   );
 }

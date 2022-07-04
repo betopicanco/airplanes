@@ -13,5 +13,14 @@ export default class AirplaneRepository extends Repository<Airplane> {
 
     return airplane;
   }
-  
+
+  public async findById(id: string): Promise<Airplane | undefined> {
+    const airplane = await this.findOne({
+      where: {
+        id
+      }
+    });
+
+    return airplane;
+  }
 }
