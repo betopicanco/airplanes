@@ -20,7 +20,7 @@ yarn dev
 
 ## Banco de dados
 
-<img src="./public/tela-inicial.png" alt="tela inicial">
+<img src="./database.png" alt="modelo do banco de dados">
 
 O banco de dados foi estruturado acrescentando o conceito de viagem ao que foi pedido no enunciado, 
 tornando possível que o mesmo viajante esteja no mesmo avião em viagens diferentes e com cargos diferentes. 
