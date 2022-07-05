@@ -11,7 +11,7 @@ export default class TypeTraveller {
   name: string;
 
   @Column('bool')
-  is_draw_member: boolean;
+  is_crew_member: boolean;
 
   @OneToMany(() => TravelsTravellers, travel_travellers => travel_travellers.type_traveller)
   travel_travellers: TravelsTravellers[];

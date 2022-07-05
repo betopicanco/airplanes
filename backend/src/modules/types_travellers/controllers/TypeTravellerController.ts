@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import ListDrawMemberService from "../services/ListDrawmMemberService";
+import ListDrawMemberService from "../services/ListCrewMemberService";
 import ListTypeTravellersService from "../services/ListTypeTravellerService";
 import ShowTypeTravellerService from "../services/ShowTypeTravellerService";
 
@@ -24,11 +24,11 @@ export default class TypeTravellerController {
     return res.json(typeTraveller);
   }
 
-  public drawMember: ControllerFn = async (req, res) => {
+  public crewMember: ControllerFn = async (req, res) => {
     const listDrawMembers = new ListDrawMemberService();
 
-    const drawMembers = await listDrawMembers.execute();
+    const crewMembers = await listDrawMembers.execute();
     
-    return res.json(drawMembers);
+    return res.json(crewMembers);
   }
 }

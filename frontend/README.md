@@ -6,7 +6,15 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 * Certifique-se de que a porta `3000` está livre.
 
-## Iniciando
+## 🚀 Instalando
+
+Para instalar o projeto entre na pasta frontend/ através do terminal e insira esse comando.
+```
+yarn
+```
+
+
+## ☕ Iniciando
 
 Execute o servidor de desenvolvimento:
 

@@ -19,7 +19,7 @@ export class CreateTypesTravellers1656770757627 implements MigrationInterface {
               isUnique: true
             },
             {
-              name: 'is_draw_member',
+              name: 'is_crew_member',
               type: 'bool'
             },
             {

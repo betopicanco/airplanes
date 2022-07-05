@@ -13,13 +13,13 @@ export default class TypeTravellerRepository extends Repository<TypeTraveller> {
     return typeTraveller;
   }
 
-  public async findDrawMembers() {
-    const drawMembers = await this.find({
+  public async findCrewMembers() {
+    const crewMembers = await this.find({
       where: {
-        is_draw_member: true
+        is_crew_member: true
       }
     });
 
-    return drawMembers;
+    return crewMembers;
   }
 }

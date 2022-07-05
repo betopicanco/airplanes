@@ -21,11 +21,11 @@ export default class ListTravelTravellersService {
     const travelTravellers = await travelTravellerRepo.list(ids);
 
     const passengers = travelTravellers.filter((travelTraveller) => {
-      return travelTraveller.type_traveller.is_draw_member == false;
+      return travelTraveller.type_traveller.is_crew_member == false;
     });
 
     const crewMembers = travelTravellers.filter((travelTraveller) => {
-      return travelTraveller.type_traveller.is_draw_member == true;
+      return travelTraveller.type_traveller.is_crew_member == true;
     });
 
     return {

@@ -26,7 +26,7 @@ export async function getServerSideProps() {
 export default function Airplanes(
   { airplanes }: { airplanes: IAirplane[] }
 ) {
-  const [ showCreate, setShowCreate ] = useState(false);
+  const [showCreate, setShowCreate] = useState(false);
 
   return (
     <BgDefault>
@@ -40,7 +40,7 @@ export default function Airplanes(
             </H1>
 
             {showCreate && (
-              <CreateEditAirplane close={() => setShowCreate(false)}/>
+              <CreateEditAirplane close={() => setShowCreate(false)} />
             )}
 
             <PrimaryButton onClick={() => setShowCreate(true)}>
@@ -48,25 +48,23 @@ export default function Airplanes(
             </PrimaryButton>
           </div>
 
-          {(airplanes.length) && (
-            <Table>
-              <Thead headers={[
-                'Placa',
-                'Modelo',
-                'Companhia Aérea',
-                'Limite de Bagagem (Lt.)', 
-                'Limite de Assentos',
-                'Ações'
-              ]}/>
-              <TBody>
-                {airplanes.map((airplane, index) => {
-                  return (
-                    <AirplaneTuple airplane={airplane} key={index}/>
-                  );
-                })}
-              </TBody>
-            </Table>
-          )}
+          <Table>
+            <Thead headers={[
+              'Placa',
+              'Modelo',
+              'Companhia Aérea',
+              'Limite de Bagagem (Lt.)',
+              'Limite de Assentos',
+              'Ações'
+            ]} />
+            <TBody>
+              {airplanes.map((airplane, index) => {
+                return (
+                  <AirplaneTuple airplane={airplane} key={index} />
+                );
+              })}
+            </TBody>
+          </Table>
         </div>
       </LayoutDefault>
     </BgDefault>

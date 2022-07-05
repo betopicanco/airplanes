@@ -13,7 +13,7 @@ export default function AddCrewMember({travel_id}: { travel_id: string }) {
       setTravellers(res.data);
     }).catch(err => console.error(err));
 
-    api.get('/typestravellers/draw-members').then( res => {
+    api.get('/typestravellers/crew-members').then( res => {
       setTypesTravellers(res.data);
     })
   }, []);

@@ -8,8 +8,8 @@ const typeTravellerController = new TypeTravellerController();
 typeTravellerRouter.get('/', typeTravellerController.index);
 
 typeTravellerRouter.get(
-  '/draw-members',
-  typeTravellerController.drawMember
+  '/crew-members',
+  typeTravellerController.crewMember
 );
 
 typeTravellerRouter.get(

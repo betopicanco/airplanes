@@ -27,7 +27,7 @@ export async function getServerSideProps() {
 }
 
 export default function Travels({ travels }: { travels: ITravel[] }) {
-  const [ showCreate, setShowCreate ] = useState(false);
+  const [showCreate, setShowCreate] = useState(false);
 
   return (
     <BgDefault>
@@ -43,7 +43,7 @@ export default function Travels({ travels }: { travels: ITravel[] }) {
             </span>
 
             {showCreate && (
-              <CreateTravel close={() => setShowCreate(false)}/>
+              <CreateTravel close={() => setShowCreate(false)} />
             )}
 
             <PrimaryButton onClick={() => setShowCreate(true)}>
@@ -56,7 +56,7 @@ export default function Travels({ travels }: { travels: ITravel[] }) {
               <Thead headers={[
                 'Avião',
                 'Data',
-              ]}/>
+              ]} />
               <TBody>
                 {travels.map((travel, index) => {
                   return (
