@@ -24,7 +24,7 @@ export default function TravelTravellerTable(
     api.get(`travellers/${traveller_id}`).then(res => {
       setTravelsTraveller(res.data?.travel_travellers);
     });
-  }, []);
+  }, [traveller_id]);
 
   return (
     <Table>
@@ -35,9 +35,10 @@ export default function TravelTravellerTable(
         ]}
       />
       <TBody>
-        {travelsTraveller.map((travel_traveller) => {
+        {travelsTraveller.map((travel_traveller, index) => {
           return (
             <TravelTravellersTuple
+              key={index}
               id={travel_traveller.travel.id}
               date={travel_traveller.travel.date}
               type={travel_traveller.type_traveller.name}

@@ -58,17 +58,11 @@ export default function Travels({ travels }: { travels: ITravel[] }) {
                 'Data',
               ]} />
               <TBody>
-                {travels.map((travel, index) => {
+                {(travels.length) && travels.map((travel, index) => {
                   return (
                     <TravelTuple
                       key={index}
-                      id={travel.id}
-                      date={travel.date}
-                      airplane={{
-                        id: travel.airplane.id,
-                        model: travel.airplane.model,
-                        place: travel.airplane.place
-                      }}
+                      travel={travel}
                     />
                   );
                 })}

@@ -37,9 +37,9 @@ export default function AirplaneTuple(
             ]}
           />
           <TBody>
-            {travels.map((travel) => {
+            {travels.map((travel, index) => {
               return (
-                <tr onClick={() => router.push(`/travels/${travel.id}`)} className={` 
+                <tr key={index} onClick={() => router.push(`/travels/${travel.id}`)} className={` 
                   hover:bg-indigo-100 
                   hover:underline
                   hover:cursor-pointer
