@@ -1,4 +1,4 @@
-import { getCustomRepository } from "typeorm";
+import { getCustomRepository, IsNull, Not } from "typeorm";
 import Travel from "../typeorm/entities/Travel";
 import TravelRepository from "../typeorm/repositories/TravelsRepository";
 
@@ -7,6 +7,9 @@ export default class ListTravelService {
     const travelRepository = getCustomRepository(TravelRepository);
 
     const travels = await travelRepository.find({
+      where: {
+        airplane: Not(IsNull())
+      },
       relations: ['airplane']
     });
 
