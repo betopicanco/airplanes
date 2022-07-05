@@ -48,23 +48,25 @@ export default function Airplanes(
             </PrimaryButton>
           </div>
 
-          <Table>
-            <Thead headers={[
-              'Placa',
-              'Modelo',
-              'Companhia Aérea',
-              'Limite de Bagagem (Lt.)', 
-              'Limite de Assentos',
-              'Ações'
-            ]}/>
-            <TBody>
-              {airplanes.map((airplane, index) => {
-                return (
-                  <AirplaneTuple airplane={airplane} key={index}/>
-                );
-              })}
-            </TBody>
-          </Table>
+          {(airplanes.length) && (
+            <Table>
+              <Thead headers={[
+                'Placa',
+                'Modelo',
+                'Companhia Aérea',
+                'Limite de Bagagem (Lt.)', 
+                'Limite de Assentos',
+                'Ações'
+              ]}/>
+              <TBody>
+                {airplanes.map((airplane, index) => {
+                  return (
+                    <AirplaneTuple airplane={airplane} key={index}/>
+                  );
+                })}
+              </TBody>
+            </Table>
+          )}
         </div>
       </LayoutDefault>
     </BgDefault>

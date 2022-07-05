@@ -48,7 +48,7 @@ export default function AddPassenger({ travel_id }: AddPassengerProps) {
       <form className={`my-2 flex justify-between`} onSubmit={handleSubmit}>
         <div className={`mr-8`}>
           <label htmlFor={'traveller'} className={`block font-bold`}>
-            Email do Passageiro:
+            Nome ou Email:
           </label>
           <input required list={'travellers_list'} id={'traveller'} className={`
             py-2 px-4 mt-2

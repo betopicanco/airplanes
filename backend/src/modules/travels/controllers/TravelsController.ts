@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import AddTravelTravellerService from "../services/AddTravelTravellerService";
 import CreateTravelService from "../services/CreateTravelService";
+import DeleteTravelTravellerService from "../services/DeleteTravelTravellerService";
 import ListTravelService from "../services/ListTravelService";
 import ListTravelTravellersService from "../services/ListTravelTravellersService";
 import ShowTravelService from "../services/ShowTravelService";
@@ -67,5 +68,15 @@ export default class TravelsController {
     });
 
     return res.json(travelTravellers);
+  }
+
+  public deleteTraveller: ControllerFn = async (req, res) => {
+    const { id } = req.params;
+
+    const deleteTravelTraveller = new DeleteTravelTravellerService();
+    
+    await deleteTravelTraveller.execute({ id });
+
+    return res.json([]);
   }
 }

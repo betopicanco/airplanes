@@ -15,4 +15,14 @@ travelTravellersRouter.post(
   travelsController.listTravellers
 );
 
+travelTravellersRouter.delete(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required()
+    }
+  }),
+  travelsController.deleteTraveller
+)
+
 export default travelTravellersRouter;

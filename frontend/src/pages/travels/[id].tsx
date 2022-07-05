@@ -19,10 +19,12 @@ interface ShowTravelProps {
   travel: ITravel,
   travelTravellers: {
     passengers: {
+      id: string,
       traveller: any,
       type_traveller: ITypeTraveller
     }[],
     crewMembers: {
+      id: string,
       traveller: ITraveller,
       type_traveller: ITypeTraveller
     }[]
@@ -68,12 +70,14 @@ export default function ShowTravel(
           'Cargo',
           'Nome',
           'Email',
+          'Ações'
         ]}
       />
       <TBody>
         {crewMembers.map((crewMember, index) => {
           return (
             <CrewMembersTuple
+              id={crewMember.id}
               key={index}
               position={crewMember.type_traveller.name}
               traveller={crewMember.traveller}
@@ -89,12 +93,14 @@ export default function ShowTravel(
         headers={[
           'Nome',
           'Email',
+          'Ações'
         ]}
       />
       <TBody>
         {passengers.map((passenger, index) => {
           return (
             <PassengersTuple
+              id={passenger.id}
               key={index}
               traveller={passenger.traveller}
             />

@@ -1,4 +1,4 @@
-import TravelsTravellers from "@modules/travels/typeorm/entities/TravelsTravellers";
+import TravelsTravellers from "../../../travels/typeorm/entities/TravelsTravellers"
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('travellers')

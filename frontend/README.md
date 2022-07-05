@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Frontend desenvolvido em Next.js com typescrit.
 
-## Getting Started
+## 💻 Pré-requisitos
 
-First, run the development server:
+Antes de começar, verifique se você atendeu aos seguintes requisitos:
+
+* Certifique-se de que a porta `3000` está livre.
+
+## Iniciando
+
+Execute o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) com seu navegador.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Viagens
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Em viagens é possível cadastrar uma nova viagem informando o avião e a data, além da tabela de viagens cadastradas onde ao selecionar por uma se é redirecionado para a página com as listas de tripulação e de passageiros que podem ser editadas. É permitido apenas um pioloto por viagem e uma pessoa só pode ser cadastrada uma vez na viagem;
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Passageiros e Tripulação
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Tela com a lista de passageiros e membros da tripulação onde é possível adicionar, editar e excluir. Além da opção de busca.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Busca por Passageiros
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Busca por nome ou email de um passageiro ou membro da tripulação que trás os seus dados além das viagens já feitas e ao seleciona-la é encaminhado para a tela com as informações da viagem.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+# Aviões
+
+Tela com a lista de aviões onde é possível fazer o crud e ao selecionar um avião fica disponível a lista de viagens feitas por ele e ao selecionar por uma delas se é redirecionado para a página da viagem.
+
+
+## Backend
+
+Instruções de como instalar e iniciar o back end <a href="../backend/README.md">Aqui</a>

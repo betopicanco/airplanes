@@ -57,7 +57,7 @@ export default function AddCrewMember({travel_id}: { travel_id: string }) {
 
         <div className={`mx-4`}>
           <label htmlFor={'traveller'} className={`block font-bold`}>
-            Email do Tripulante:
+            Nome ou Email:
           </label>
           <input required list={'travellers_list'} id={'traveller'} className={`
             py-2 px-4 mt-2
