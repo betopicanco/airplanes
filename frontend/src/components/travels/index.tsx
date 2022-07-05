@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
 import ParseDate from "../ParseDate";
 import Td from "../table/Td";
 
@@ -14,7 +13,6 @@ interface TravelProps {
 }
 
 export default function TravelTuple({ id, airplane, date }: TravelProps) {
-  const [ showModal, setShowModal ] = useState(false);
   const router = useRouter();
 
   return (
@@ -32,15 +30,6 @@ export default function TravelTuple({ id, airplane, date }: TravelProps) {
           {<ParseDate date={date}/>}
         </Td>
        </tr>
-
-      {showModal && (
-        <ShowTravel
-          id={id}
-          date={date}
-          airplane={airplane}
-          close={() => setShowModal(false)}
-        />
-      )}
     </>
   );
 }

@@ -8,12 +8,12 @@ interface IRequest {
 
 export default class DeleteTravellerService {
   public async execute({ id }: IRequest): Promise<void> {
-    const travellerRepository = getCustomRepository(TravellerRepository);
+    const travellerRepo = getCustomRepository(TravellerRepository);
 
-    const traveller = await travellerRepository.findOne(id);
+    const traveller = await travellerRepo.findOne(id);
 
     if(!traveller) throw new AppError('Traveller not found');
 
-    await travellerRepository.remove(traveller);
+    await travellerRepo.remove(traveller);
   }
 }

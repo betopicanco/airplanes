@@ -7,9 +7,10 @@ export default function PrimaryButton({ type = 'button', children, onClick }: Bu
       type={type} 
       className={` 
         bg-blue-900 text-white 
-        p-4 
+        px-4 py-2 
         rounded-lg shadow-md 
         active:bg-blue-800
+        outline outline-offset-2 outline-white
       `}
     >
       { children }

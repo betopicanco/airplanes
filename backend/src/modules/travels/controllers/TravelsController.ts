@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import AddTravelTravellerService from "../services/AddTravelTravellerService";
 import CreateTravelService from "../services/CreateTravelService";
 import ListTravelService from "../services/ListTravelService";
+import ListTravelTravellersService from "../services/ListTravelTravellersService";
 import ShowTravelService from "../services/ShowTravelService";
 
 type ControllerFn = (req: Request, res: Response) => Promise<Response> 
@@ -54,5 +55,17 @@ export default class TravelsController {
     });
 
     return res.json(travelTraveller);
+  }
+
+  public listTravellers: ControllerFn = async (req, res) => {
+    const { travel_travellers } = req.body;
+
+    const listTravellers = new ListTravelTravellersService();
+
+    const travelTravellers = await listTravellers.execute({
+      travel_travellers
+    });
+
+    return res.json(travelTravellers);
   }
 }

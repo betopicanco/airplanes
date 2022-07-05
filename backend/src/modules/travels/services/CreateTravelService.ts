@@ -1,8 +1,6 @@
 import AirplaneRepository from "@modules/airplanes/typeorm/repositories/AirplaneRepository";
-import TypeTraveller from "@modules/types_travellers/typeorm/entities/TypeTraveller";
 import AppError from "@shared/errors/AppErrors";
 import { getCustomRepository } from "typeorm";
-import Travel from "../typeorm/entities/Travel";
 import TravelRepository from "../typeorm/repositories/TravelsRepository";
 
 interface ITravelTravellers {

@@ -11,22 +11,6 @@ interface AddPassengerProps {
 export default function AddPassenger({ travel_id }: AddPassengerProps) {
   const [ travellers, setTravellers ] = useState<ITraveller[]>([]);
   const [ typeTraveller, setTypeTraveller ] = useState<ITypeTraveller>();
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-
-    const email_traveller = event.target.traveller.value;
-    const type_traveller_id = typeTraveller?.id;
-
-    api.post('/travels/traveller', {
-      travel_id,
-      email_traveller,
-      type_traveller_id
-    }).then(res => {
-      window.location.reload();
-    }).catch(err => console.error(err));
-  }
-
-
   useEffect(() => {
     api.get('/travellers/').then( res => {
       setTravellers(res.data);
@@ -41,7 +25,24 @@ export default function AddPassenger({ travel_id }: AddPassengerProps) {
       setTypeTraveller(passengerType);
     })
   }, []);
-  
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+
+    const email_traveller = event.target.traveller.value;
+    const type_traveller_id = typeTraveller?.id;
+
+    const data = {
+      travel_id,
+      email_traveller,
+      type_traveller_id
+    }
+
+    await api.post('/travels/traveller', data).then(res => {
+      window.location.reload();
+    }).catch(err => console.error(err));
+  }
+
   if(travellers && typeTraveller) {
     return (
       <form className={`my-2 flex justify-between`} onSubmit={handleSubmit}>
@@ -49,15 +50,15 @@ export default function AddPassenger({ travel_id }: AddPassengerProps) {
           <label htmlFor={'traveller'} className={`block font-bold`}>
             Email do Passageiro:
           </label>
-          <input list={'travellers_list'} id={'traveller'} className={`
+          <input required list={'travellers_list'} id={'traveller'} className={`
             py-2 px-4 mt-2
             border border-neutral-300 
             rounded-md shadow-md
           `}/>
           <datalist id={'travellers_list'}>
-            {travellers.map((traveller) => {
+            {travellers.map((traveller, index) => {
               return (
-                <option value={traveller.email}>
+                <option key={index} value={traveller.email}>
                   {traveller.name}
                 </option>
               );

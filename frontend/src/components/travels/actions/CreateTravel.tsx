@@ -3,6 +3,7 @@ import AirplaneInterface from "../../../interfaces/IAirplane";
 import api from "../../../services/api";
 import PrimaryButton from "../../buttons/PrimaryButton";
 import Input from "../../inputs";
+import Date from "../../inputs/Date";
 import Modal from "../../modal";
 
 export default function CreateTravel(
@@ -17,8 +18,7 @@ export default function CreateTravel(
     await api.post('/travels/', {
       date,
       airplane_id
-    })
-      .then(res => window.location.reload())
+    }).then(res => window.location.reload())
       .catch(err => console.log(err))
   }
 
@@ -41,9 +41,9 @@ export default function CreateTravel(
           border border-neutral-300 
           rounded-md shadow-md
         `}>
-          {airplanes.map((airplane) => {
+          {airplanes.map((airplane, index) => {
             return (
-              <option value={airplane.id}>
+              <option key={index} value={airplane.id}>
                 {airplane.place} - {airplane.model}
               </option>
             );
@@ -51,10 +51,11 @@ export default function CreateTravel(
         </select>
       
 
-      <Input
-        type={'date'}
+      <Date
+        value={date}
+        type={'datetime-local'}
         label={'Data'}
-        onChange={(e: any) => setDate(e.target.value)}
+        handleChange={(e: any) => setDate(e.target.value)}
       />
 
 
@@ -68,7 +69,7 @@ export default function CreateTravel(
   
   return (
     <Modal closeModal={close}>
-      {airplanes.length ? (
+      {(airplanes.length) ? (
         <>
           {form}
         </>

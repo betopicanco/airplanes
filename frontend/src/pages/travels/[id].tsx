@@ -1,19 +1,40 @@
 import { GetServerSidePropsContext } from "next";
-import SecondaryButton from "../../components/buttons/SecondaryButton";
 import H1 from "../../components/headings/H1";
 import LayoutDefault from "../../components/layout";
 import BgDefault from "../../components/layout/BgDefault";
 import ParseDate from "../../components/ParseDate";
+import Table from "../../components/table";
+import TBody from "../../components/table/TBody";
+import Thead from "../../components/table/Thead";
 import AddCrewMember from "../../components/travels/actions/AddCrewMember";
 import AddPassenger from "../../components/travels/actions/AddPassenger";
+import CrewMembersTuple from "../../components/travels/crewMembers";
+import PassengersTuple from "../../components/travels/passengers";
 import ITravel from "../../interfaces/ITravel";
+import ITraveller from "../../interfaces/ITraveller";
+import ITypeTraveller from "../../interfaces/ITypeTraveller";
 import api from "../../services/api";
+
+interface ShowTravelProps {
+  travel: ITravel,
+  travelTravellers: {
+    passengers: {
+      traveller: any,
+      type_traveller: ITypeTraveller
+    }[],
+    crewMembers: {
+      traveller: ITraveller,
+      type_traveller: ITypeTraveller
+    }[]
+  }
+}
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const id = context.params?.id;
-  const travel = await api.get(`/travels/${id}`).then(res => {
-    return res.data;
-  });
+  const { 
+    travel, 
+    travel_travellers_ids: travel_travellers
+  } = await api.get(`/travels/${id}`).then(res => res.data);
 
   if (!travel) {
     return {
@@ -22,16 +43,66 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       }
     }
   }
+  
+  const travelTravellers = await api.post('/traveltravellers/',{
+    travel_travellers: travel_travellers
+  }).then(res => res.data);
 
   return {
     props: {
-      travel
+      travel,
+      travelTravellers
     }
   }
 }
 
-export default function ShowTravel({ travel }: { travel: ITravel }) {
+export default function ShowTravel(
+  { travel, travelTravellers }: ShowTravelProps
+) {
   const { id, airplane, date } = travel;
+  const { passengers, crewMembers } = travelTravellers;
+  const crewMembersTable = (
+    <Table>
+      <Thead
+        headers={[
+          'Cargo',
+          'Nome',
+          'Email',
+        ]}
+      />
+      <TBody>
+        {crewMembers.map((crewMember, index) => {
+          return (
+            <CrewMembersTuple
+              key={index}
+              position={crewMember.type_traveller.name}
+              traveller={crewMember.traveller}
+            />
+          );
+        })}
+      </TBody>
+    </Table>
+  );
+  const passengersTable = (
+    <Table>
+      <Thead
+        headers={[
+          'Nome',
+          'Email',
+        ]}
+      />
+      <TBody>
+        {passengers.map((passenger, index) => {
+          return (
+            <PassengersTuple
+              key={index}
+              traveller={passenger.traveller}
+            />
+          );
+        })}
+      </TBody>
+    </Table>
+  );
 
   return (
     <BgDefault>
@@ -56,7 +127,7 @@ export default function ShowTravel({ travel }: { travel: ITravel }) {
           </div>
 
           <div className={`px-2`}>
-            <div>
+            <div className={` py-8 `}>
               <h2 className={` font-bold my-4 `}>
                 <span className={`text-white text-2xl `}>
                   Tripulantes
@@ -70,10 +141,11 @@ export default function ShowTravel({ travel }: { travel: ITravel }) {
               </div>
 
               <div className={` pt-6 `}>
-                {/* {crewMembersTable} */}
+                {(crewMembers.length > 0) && crewMembersTable}
               </div>
             </div>
-            <div>
+
+            <div className={` py-8 `}>
               <h2 className={` font-bold my-4 block`}>
                 <span className={`text-white text-2xl `}>
                   Passageiros
@@ -87,7 +159,7 @@ export default function ShowTravel({ travel }: { travel: ITravel }) {
               </div>
 
               <div className={` pt-6 w-2/3 mx-auto `}>
-                {/* {passengersTable} */}
+                {(passengers.length > 0) && passengersTable}
               </div>
             </div>
           </div>

@@ -15,7 +15,7 @@ interface CrawMembersProps {
   model: string
 }
 
-export default function CrawMembers({ model, crawMembers }: CrawMembersProps) {
+export default function CrawMembersTuple({ model, crawMembers }: CrawMembersProps) {
   const actions = (
     <div className={` flex justify-center `}>
       <span className={` py-1 px-2 `}>

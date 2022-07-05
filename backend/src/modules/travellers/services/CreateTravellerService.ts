@@ -13,19 +13,19 @@ export default class CreateTravellerService {
   public async execute(
     { name, email, birth }: IRequest
   ): Promise<Traveller> { 
-    const travellerRepository = getCustomRepository(TravellerRepository);
+    const travellerRepo = getCustomRepository(TravellerRepository);
 
-    const emailExists = await travellerRepository.findByEmail(email);
+    const emailExists = await travellerRepo.findByEmail(email);
 
     if(emailExists) throw new AppError('Email is already used');
 
-    const traveller = travellerRepository.create({
+    const traveller = travellerRepo.create({
       name,
       email,
       birth
     });
 
-    await travellerRepository.save(traveller);
+    await travellerRepo.save(traveller);
 
     return traveller;
   }

@@ -25,4 +25,31 @@ export default class TravelTravellerRepository extends Repository<TravelsTravell
 
     return travelTraveller;
   }
+
+  public async list(ids: string[] ): Promise<TravelsTravellers[]> {
+    const travelTravellers = this.findByIds(ids, {
+      relations: ['type_traveller', 'traveller']
+    });
+
+    return travelTravellers;
+  }
+
+  public async findById(id: string): Promise<TravelsTravellers | undefined> {
+    const travelTraveller = this.findOne(id, {
+      relations: ['type_traveller', 'traveller', 'travel']
+    });
+
+    return travelTraveller;
+  }
+
+  public async findByTravel(travel: Travel): Promise<TravelsTravellers[] | undefined> {
+    const travelsTravellers = this.find({
+      where: {
+        travel
+      },
+      relations: ['traveller', 'type_traveller']
+    });
+
+    return travelsTravellers;
+  }
 }

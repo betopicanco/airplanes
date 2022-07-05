@@ -13,17 +13,11 @@ import CreateTravel from "../../components/travels/actions/CreateTravel";
 import ITravel from "../../interfaces/ITravel";
 import api from "../../services/api";
 
-// Pega os dados do banco
+// Busca pela lista de viagens no banco
 export async function getServerSideProps() {
   const travels = await api.get('/travels/').then(res => {
     return res.data;
-  }).catch(err => {
-    return {
-      redirect: {
-        destination: '/'
-      }
-    }
-  });
+  }).catch(err => console.error(err));
 
   return {
     props: {
@@ -42,7 +36,7 @@ export default function Travels({ travels }: { travels: ITravel[] }) {
           mx-8 sm:mx-24 mt-20 pt-12 
         `}>
           <div className={` mb-8 flex justify-between `}>
-            <span className={`bg-white px-4 py-4`}>
+            <span>
               <H1>
                 Viagens
               </H1>

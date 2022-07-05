@@ -34,8 +34,8 @@ travelsRouter.post(
     [Segments.BODY]: {
       travel_id: Joi.string().uuid().required(),
       email_traveller: Joi.string().required(),
-      type_traveller_id: Joi.string().uuid().required() 
-    },
+      type_traveller_id: Joi.string().required()
+    }
   }),
   travelsController.addTraveller
 );

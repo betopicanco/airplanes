@@ -7,16 +7,32 @@ interface IRequest {
   id: string,
 }
 
-export default class ShowTravelService {
-  public async execute({ id }: IRequest): Promise<Travel> {
-    const travelRepository = getCustomRepository(TravelRepository);
+interface IResponse {
+  travel: Travel,
+  travel_travellers_ids: {
+    id: string
+  }[] 
+}
 
-    const travel = await travelRepository.findById(id);
+export default class ShowTravelService {
+  public async execute({ id }: IRequest): Promise<IResponse> {
+    const travelRepo = getCustomRepository(TravelRepository);
+
+    const travel = await travelRepo.findById(id);
 
     if(!travel) {
       throw new AppError('Travel not found.');
     }
 
-    return travel;
+    const travel_travellers_ids = travel.travel_travellers.map((travel_traveller) => {
+      return {
+        id: travel_traveller.id
+      };
+    })
+
+    return {
+      travel,
+      travel_travellers_ids
+    };
   }
 }

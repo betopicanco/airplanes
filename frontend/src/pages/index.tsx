@@ -1,10 +1,13 @@
 import type { NextPage } from 'next'
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import PrimaryButton from '../components/buttons/PrimaryButton';
 import LayoutDefault from '../components/layout';
 import BgDefault from '../components/layout/BgDefault';
 
 const Home: NextPage = () => {
+  const router = useRouter();
+
   return (
     <BgDefault>
       <LayoutDefault>
@@ -17,7 +20,7 @@ const Home: NextPage = () => {
           </div>
 
           <div className={`fixed z-10 right-8 bottom-8`}>
-            <PrimaryButton>
+            <PrimaryButton onClick={() => router.push(`travellers/search`)}>
               Buscar por passageiros
             </PrimaryButton>
           </div>

@@ -1,6 +1,5 @@
-import { NextPage } from "next";
-import { useEffect, useState } from "react";
-import AirplaneInfo from "../components/airplane";
+import { useState } from "react";
+import AirplaneTuple from "../components/airplane";
 import CreateEditAirplane from "../components/airplane/actions/CreateEditAirplane";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import H1 from "../components/headings/H1";
@@ -9,17 +8,25 @@ import BgDefault from "../components/layout/BgDefault";
 import Table from "../components/table";
 import TBody from "../components/table/TBody";
 import Thead from "../components/table/Thead";
+import IAirplane from "../interfaces/IAirplane";
 import api from "../services/api";
 
-const Airplanes: NextPage = () => {
-  const [ showCreate, setShowCreate ] = useState(false);
-  const [ airplanes, setAirplanes ] = useState([]);
+export async function getServerSideProps() {
+  const airplanes = await api.get('/airplanes/').then(res => {
+    return res.data;
+  }).catch(err => console.error(err));
 
-  useEffect(() => {
-    api.get('/airplanes/').then(res => {
-      setAirplanes(res.data);
-    });
-  }, []);
+  return {
+    props: {
+      airplanes
+    }
+  }
+}
+
+export default function Airplanes(
+  { airplanes }: { airplanes: IAirplane[] }
+) {
+  const [ showCreate, setShowCreate ] = useState(false);
 
   return (
     <BgDefault>
@@ -53,7 +60,7 @@ const Airplanes: NextPage = () => {
             <TBody>
               {airplanes.map((airplane, index) => {
                 return (
-                  <AirplaneInfo airplane={airplane} key={index}/>
+                  <AirplaneTuple airplane={airplane} key={index}/>
                 );
               })}
             </TBody>
@@ -63,5 +70,3 @@ const Airplanes: NextPage = () => {
     </BgDefault>
   );
 }
-
-export default Airplanes;

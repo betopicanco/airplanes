@@ -1,6 +1,14 @@
-import InputProps from "./InputProps";
+interface DateProps {
+  type?: 'date' | 'datetime-local'
+  label: string,
+  value: string | undefined,
+  handleChange: (e: any) => void,
+  required?: boolean
+}
 
-export default function Input({ type = 'text', value, label, onChange, min, required }: InputProps) {
+export default function Date(
+  { label, value, required, handleChange, type = 'date' }: DateProps
+) {
   return (
     <div className={` m-4 `}>
       <div className={` text-left w-full `}>
@@ -10,11 +18,10 @@ export default function Input({ type = 'text', value, label, onChange, min, requ
       </div>
 
       <input 
-        type={type} 
-        min={min} 
-        value={value} 
-        onChange={(e) => onChange(e)}
+        type={type}
+        value={value || ''} 
         required={required}
+        onChange={handleChange}
         className={`
           py-2 px-4 
           border border-neutral-300 

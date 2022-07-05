@@ -15,9 +15,10 @@ export default class TravellerRepository extends Repository<Traveller> {
 
   public async findById(id: string): Promise<Traveller | undefined> {
     const traveller = await this.findOne({
+      relations: ['travel_traveller'],
       where: {
         id
-      }
+      },
     });
 
     return traveller;

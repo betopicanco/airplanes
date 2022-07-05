@@ -11,8 +11,7 @@ export default function AddCrewMember({travel_id}: { travel_id: string }) {
   useEffect(() => {
     api.get('/travellers/').then( res => {
       setTravellers(res.data);
-    })
-      .catch(err => console.error(err));
+    }).catch(err => console.error(err));
 
     api.get('/typestravellers/draw-members').then( res => {
       setTypesTravellers(res.data);
@@ -41,14 +40,14 @@ export default function AddCrewMember({travel_id}: { travel_id: string }) {
           <label htmlFor="type_traveller" className={`block font-bold`}>
             Cargo: 
           </label>
-          <select id={'type_traveller'} className={`
+          <select required id={'type_traveller'} className={`
             py-2 px-4 mt-2
             border border-neutral-300 
             rounded-md shadow-md
           `}>
-            {typesTraveller.map((type) => {
+            {typesTraveller.map((type, index) => {
               return (
-                <option value={type.id}>
+                <option key={index} value={type.id}>
                   {type.name}
                 </option>
               );
@@ -60,15 +59,15 @@ export default function AddCrewMember({travel_id}: { travel_id: string }) {
           <label htmlFor={'traveller'} className={`block font-bold`}>
             Email do Tripulante:
           </label>
-          <input list={'travellers_list'} id={'traveller'} className={`
+          <input required list={'travellers_list'} id={'traveller'} className={`
             py-2 px-4 mt-2
             border border-neutral-300 
             rounded-md shadow-md
           `}/>
           <datalist id={'travellers_list'}>
-            {travellers.map((traveller) => {
+            {travellers.map((traveller, index) => {
               return (
-                <option value={traveller.email}>
+                <option key={index} value={traveller.email}>
                   {traveller.name}
                 </option>
               );
